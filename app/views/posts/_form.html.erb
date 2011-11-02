@@ -22,6 +22,12 @@
   <div class="field">
     <% @timetag = Time.now %>
   </div>
+  <div class="field">
+	<% Category.all.each do | category | %>
+		<%= f.radio_button :category_id, category.id %>
+		<%= f.label "category_id_#{category.id}", category.name %>
+	<% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,6 +1,7 @@
 
 <table>
   <tr>
+    <th>Kategori</th>
     <th>Titel</th>
     <th>Inlägg</th>
     <th>Skrivet</th>
@@ -11,6 +12,7 @@
 
 <% @posts.each do |post| %>
   <tr>
+    <td><%= post.category.name %></td>
     <td><%= post.title %></td>
     <td><%= link_to post.body, post %></td>
     <td><%= distance_of_time_in_words post.created_at, Time.now %></td>
