@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BGruppen</title>
+  <%= stylesheet_link_tag    "styles" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="content">
+	<h1>Välkommen till AP och livet</h1>
+	<h2>-ett snällt forum för nära föräldrar-</h2>
+	<ul id="nav">
+		<li>hem</li>
+		<li>forum</li>
+		<li>om oss</li>
+		<li>om ap</li>
+	</ul>
+
+<%= yield %>
+</div>
+</body>
+</html>

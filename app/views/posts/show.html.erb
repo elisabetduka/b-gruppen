@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Rubrik:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <%= @post.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Tillbaka till alla inlägg', posts_path %>
