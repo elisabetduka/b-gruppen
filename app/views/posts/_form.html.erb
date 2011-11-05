@@ -10,9 +10,6 @@
       </ul>
     </div>
   <% end %>
-	<% if post.user_id = session[user:id] ? %>
-		<p><%= post.user_id %></p>
-	<% end %>
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title %>
