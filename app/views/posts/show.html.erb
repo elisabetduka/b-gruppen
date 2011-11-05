@@ -9,6 +9,11 @@
   <%= @post.body %>
 </p>
 
+<p>
+	<b>Skrivet av: </b>
+	<%= @post.user_id %>
+</p>
+
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Tillbaka till alla inlägg', posts_path %>
