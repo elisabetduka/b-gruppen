@@ -1,5 +1,7 @@
 BGruppen::Application.routes.draw do
 	
+  resources :comments
+
 	get "sessions/new"
 
 	resources :users

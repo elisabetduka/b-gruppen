@@ -1,10 +1,11 @@
-
+<div id="post_list">
+<input type="text" class="search" />
 <table>
   <tr>
-    <th>Kategori</th>
+    <th class="sort" rel="name">Kategori</th>
     <th>Titel</th>
     <th>Inlägg</th>
-    <th>Skrivet</th>
+    <th class="sort" rel="time">Skrivet</th>
     <th>Författare</th>
     <th></th>
     <th></th>
@@ -12,15 +13,18 @@
   </tr>
 
 <% @posts.each do |post| %>
-  <tr>
-    <td><%= post.category.name %></td>
+  <tr class="list">
+    <td>
+    <span class="name"><%= post.category.name %></span></td>
     <td><%= post.title %></td>
     <td><%= link_to post.body, post %></td>
     <td><%= distance_of_time_in_words post.created_at, Time.now %></td>
-    <td><%= post.user_id%></td>
+    <td><%= post.user.try :name %></td>
     <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Ta bort inlägg', post, confirm: 'Are you sure?', method: :delete %></td>
+    <% if (post.user_id == session[:user_id]) %>
+		<td><%= link_to 'Edit', edit_post_path(post) %></td>
+		<td><%= link_to 'Ta bort inlägg', post, confirm: 'Are you sure?', method: :delete %></td>
+    <%end %>
   </tr>
 <% end %>
 </table>
@@ -29,3 +33,4 @@
 
 <%= link_to 'Vill du skriva ett nytt inlägg?', new_post_path %>
 <p>Totalt antal inlägg: <%= Post.count %></p>
+</div>

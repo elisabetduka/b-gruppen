@@ -2,12 +2,15 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+	if (session[:user_id] != nil)
     @posts = Post.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
+		respond_to do |format|
+		  format.html # index.html.erb
+		  format.json { render json: @posts }
+		end
+	else redirect_to '/log_in'
+	end
   end
 
   # GET /posts/1

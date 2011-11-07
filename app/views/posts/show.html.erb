@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
-
-<p>
+<div id="post">
+<h2>
   <b>Rubrik:</b>
   <%= @post.title %>
+</h2>
+
+<p>
+  <b>postat i kategori:</b>
+  <%= @post.category.name %>
 </p>
 
 <p>
@@ -14,6 +19,11 @@
 	<%= @post.user_id %>
 </p>
 
+<% if (@post.user_id == session[:user_id]) %>
+	<%= link_to 'Edit', edit_post_path(@post) %> |
+<% end %>
+<p>Kommentarer: </p>
+<p><%=Comment.where (:post_id == Post.id) %></p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Tillbaka till alla inlägg', posts_path %>
+</div>
