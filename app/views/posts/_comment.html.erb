@@ -1,0 +1,6 @@
+<div class="comment">
+  <%= simple_format h(comments.content) %>
+  <%= link_to 'Destroy Comment', comment,
+    :confirm => 'Are you sure?',
+    :method => :delete if logged_in? %>
+</div>
