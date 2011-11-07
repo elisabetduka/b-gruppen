@@ -17,7 +17,7 @@
     <td><%= post.title %></td>
     <td><%= link_to post.body, post %></td>
     <td><%= distance_of_time_in_words post.created_at, Time.now %></td>
-    <td><%= post.user_id %></td>
+    <td><%= post.user_id%></td>
     <td><%= link_to 'Show', post %></td>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
     <td><%= link_to 'Ta bort inlägg', post, confirm: 'Are you sure?', method: :delete %></td>
