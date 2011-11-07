@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 <div id="post">
 <h2>
-  <b>Rubrik:</b>
   <%= @post.title %>
 </h2>
 
 <p>
   <b>postat i kategori:</b>
   <%= @post.category.name %>
+  <%= @post.created_at %>
 </p>
 
 <p>
@@ -16,7 +16,7 @@
 
 <p>
 	<b>Skrivet av: </b>
-	<%= @post.user_id %>
+	<%= @post.user.name %>
 </p>
 
 <% if (@post.user_id == session[:user_id]) %>
@@ -24,12 +24,13 @@
 <% end %>
 
 <%= link_to 'Tillbaka till alla inlägg', posts_path %>
-</div>
-<hr />
+<h2>Kommentarer: </h2>
+<%= render :partial => 'comment', :collection => @post.comments %>
+
 <%= form_for(@comment) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <h2><%= pluralize(@comment.errors.count, "error") %> gjorde att det inte gick att spara din kommentar:</h2>
 
       <ul>
       <% @comment.errors.full_messages.each do |msg| %>
@@ -41,6 +42,7 @@
   <%= f.hidden_field :post_id %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="field">
+  <p>Skriv ett svar!</p>
     <%= f.label :content %><br />
     <%= f.text_area :content %>
   </div>
@@ -48,4 +50,6 @@
   <p>
     <%= f.submit "Post Comment" %>
   </p>
+
 <% end %>
+</div>
