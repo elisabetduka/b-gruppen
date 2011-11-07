@@ -41,12 +41,11 @@
   <%= f.hidden_field :post_id %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
   </div>
  
   <p>
     <%= f.submit "Post Comment" %>
   </p>
-<%= render :partial => 'comments', :collection => @post.comments %>
 <% end %>
