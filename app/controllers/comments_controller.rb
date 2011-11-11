@@ -1,6 +1,10 @@
 class CommentsController < ApplicationController
+  
   def create
-    @comment = Comment.new(params[:comment])
+	@post = Post.find(params[:post_id])
+    @comment = @post.comments.new(params[:comment], params[:created_at])
+	@comment.user_id = current_user.id
+	@comment_time = @comment.created_at
  
     if @comment.save
       flash[:notice] = 'Din kommentar ar sparad!'
@@ -12,7 +16,7 @@ class CommentsController < ApplicationController
   end
  
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment = current_user.comments.find(params[:comment])
     @comment.destroy
  
     redirect_to(@comment.post)

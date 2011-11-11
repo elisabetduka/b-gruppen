@@ -4,13 +4,13 @@
   
 <table>
   <tr>
-    <th class="show_user">skrivet av</th>
-    <th>inlägg <%= @post.created_at %></th>
+    <th class="show_user"><%= @post.user.try :name %></th>
+    <th><%= @post.title %><span id="date_right"><%= @post.created_at %></span></th>
    </tr>
    
    <tr>
-	<td class="show_user"><p><%= @post.user.try :name %></p><b>medlem sedan</b><% @post.user.try :created_at %></td>
-	<td><p><%= @post.title %></p><%= @post.body %><p><%= @post.created_at %></p></td>
+	<td class="show_user"><p><b>medlem sedan</b><br /><%= @post.user.try :created_at %></p></td>
+	<td><p></p><%= @post.body %></td>
   </tr>
 </table>
 <span class="endline"></span>
@@ -19,12 +19,11 @@
 	<%= link_to 'Ta bort inlägg', confirm: 'Are you sure?', method: :delete %>
 <% end %>
 
-<%= link_to 'Tillbaka till alla inlägg', posts_path %>
 
 <h3>Kommentarer: </h3>
 <%= render :partial => 'comment', :collection => @post.comments %>
 
-<%= form_for(@comment) do |f| %>
+<%= form_for ([@post, @comment]) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> gjorde att det inte gick att spara din kommentar:</h2>
@@ -36,17 +35,16 @@
       </ul>
       <% end %>
     </div>
-  <%= f.hidden_field :post_id %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="field">
   <h4>Skriv ett svar!</h4>
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <span id="answer"><%= f.text_area :content %></span>
   </div>
  
   <p>
-    <%= f.submit "Post Comment" %>
+    <%= f.submit "Skicka!" %>
   </p>
 
 <% end %>
+<%= link_to 'Tillbaka till alla inlägg', posts_path %>
 </div>

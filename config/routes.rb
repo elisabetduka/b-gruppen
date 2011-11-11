@@ -1,16 +1,18 @@
 BGruppen::Application.routes.draw do
 	
-  resources :comments
 
 	get "sessions/new"
 
-	resources :users
-
-	get "users/new"
+	resources :users do
+		resources :comments, :only => [:destroy]
+	end
 
 	resources :categories
 
-	resources :posts
+	resources :posts do 
+		resources :comments, :only => [:create]
+	end
+	
 	root to: "posts#index"
 
 	get "log_out" => "sessions#destroy", :as => "log_out"

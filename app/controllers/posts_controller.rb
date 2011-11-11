@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
 	if (session[:user_id] != nil)
-    @posts = Post.all
+	@posts = Post.where("")
+	@posts = @posts.order("created_at desc")
 
 		respond_to do |format|
 		  format.html # index.html.erb

@@ -1,6 +1,19 @@
 <div class="comment">
-  <p><%= comment.content %></p>
-  <%= link_to 'Delete', comment,
+  <table>
+  <tr>
+	<th class="show_user"></th>
+	<th><span id="date_right"><%= @comment_time %></span></th>
+	<th></td>
+  </tr>
+  <tr>
+	<td><%= comment.user.name %></td>
+	<td><%= comment.content %></td>
+  
+  <% if comment.user == current_user %>
+	<td><%= link_to 'Delete', [current_user, comment],
     :confirm => 'Are you sure?',
-    :method => :delete %>
+    :method => :delete %></td>
+  <% end %>
+  </tr>
+  </table>
 </div>

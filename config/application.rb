@@ -46,5 +46,6 @@ module BGruppen
     config.assets.version = '1.0'
     
     config.force_ssl = false
+    
   end
 end
